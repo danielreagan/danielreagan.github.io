@@ -56,11 +56,12 @@ browser-sync start --files "css/*.css, views/*.cshtml, /scripts/*.js" --proxy lo
     <div>
         <h2>Making it Visual Studio Friendly</h2>
         <div>
-            In theory you could now fire up your development server in VS like normal (the localhost:54604 part of the batch file) and then launch the batch file manually.  But we can take it one more step to make it more friendly to Visual Studio.  Create an "External Tool" to lanuch the browsers for you <code>Tools -> External Tools...</code>:  <pre>
-            Name:  whatev
-            Command:  yourbatfile.bat
-            Initial directory:  $(ProjectDir)
-            </pre>
+            In theory you could now fire up your development server in VS like normal (the localhost:54604 part of the batch file) and then launch the batch file manually.  But we can take it one more step to make it more friendly to Visual Studio.  Create an "External Tool" to lanuch the browsers for you <code>Tools -> External Tools...</code>:
+<pre>
+Name:               whatev
+Command:            yourbatfile.bat
+Initial directory:  $(ProjectDir)
+</pre>
         </div>
         <div style="padding:10px;">
             <img src="M9TFeqA3ie.gif" alt="instruction gif" style="height:600px;"/>
