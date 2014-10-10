@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,21 +16,59 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
-   <div class="container">
-    <h1>Browser Sync (AKA magic browsers)</h1>
-    <h2>Prerequisites</h2>
-    <div class="row">
-        <div class="col-sm-4"><a href="http://nodejs.org/">Node JS</a></div>
-        <div class="col-sm-4"><a href="http://www.browsersync.io/">BrowserSync</a></div>
-        <div class="col-sm-4"><a href="http://nodejs.org/">Node JS</a></div>
-    </div>
+</head>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<body>
+    <div class="container">
+        <h1>Browser Sync (AKA magic browsers)</h1>
+        <h2>Prerequisites</h2>
+        <div class="row">
+            <div class="col-sm-4">
+                <div>
+                    <h3><a href="http://nodejs.org/">Node JS</a></h3>
+                </div>
+                <div>Install Node either from the <a href="http://nodejs.org/download/">installer on the download page</a>, or if you install from <a href="http://chocolatey.org/">chocolatey</a> you can run <code>choco install nodejs.install </code> The important thing here is that you get node and NPM installed and setup on your PATH environment variable.
+                </div>
+            </div>
+            <div class="col-sm-4"><div><h3><a href="http://www.browsersync.io/">BrowserSync</a></h3></div><div>Afther you have Node installed, install BrowserSync by opening a command window and running <code>npm install -g browser-sync</code> </div>
+            </div>
+            <div class="col-sm-4"><div><h3><a href="http://nodejs.org/">Set it up</a></h3></div>
+                <div>
+                    Set up your local environment for BrowserSync to monitor.  I created a batch file to lanunch all my browsers (chrome is my default, so I left it out)  <code>c:/allbrowsers.bat:</code> <pre><code>start iexplore "http://localhost:3000"
+
+start safari "http://localhost:3000"
+
+start firefox "http://localhost:3000"
+
+browser-sync start --files "css/*.css, views/*.cshtml, /scripts/*.js" --proxy localhost:54604 --port 3000 --logLevel debug
+
+</code></pre>
+                </div>
+            </div>
+        </div>
+<div class="row">
+    <div>
+        <h2>Making it Visual Studio Friendly</h2>
+        <div>
+            In theory you could now fire up your development server in VS like normal (the localhost:54604 part of the batch file) and then launch the batch file manually.  But we can take it one more step to make it more friendly to Visual Studio.  Create an "External Tool" to lanuch the browsers for you <code>Tools -> External Tools...</code>:
+        </div>
+        <div style="padding:10px;">
+            <img src="M9TFeqA3ie.gif" alt="instruction gif" style="height:600px;"/>
+        </div>
+        <div>
+            Now you should be able to lanuch your debugger, and then use your new tool in the Tools menu.   Be aware that when you start BrowserSync it will open a new command window for the process.  BrowserSync will continue to run until you close that.  I tried making the External Tool close this when you stop it, but that kept leaving NodeJs running and hogging port 3000 until you went out and manually killed Node. Feel free to solve that problem if you feel like it.
+        </div>
+        <div><h2>Happy Coding!</h2></div>
+        <div class="footer">
+           <div class="text-muted">Copyright nobody 2014.</div>
+        </div>
     </div>
-  </body>
+</div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    </div>
+</body>
+
 </html>
